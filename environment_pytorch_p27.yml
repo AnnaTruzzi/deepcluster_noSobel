@@ -1,0 +1,10 @@
+name: pytorch_p27
+dependencies:
+  - numpy
+  - pandas
+  - pickle
+  - time
+  - argparse
+  - sklearn
+  - torch
+  - datetime
