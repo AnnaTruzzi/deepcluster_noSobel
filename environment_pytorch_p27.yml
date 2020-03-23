@@ -1,10 +1,12 @@
 name: pytorch_p27
 dependencies:
+  - python=2.7
   - numpy
   - pandas
-  - pickle
-  - time
-  - argparse
-  - sklearn
-  - torch
-  - datetime
+  - pip:
+    - torch
+    - torchvision
+    - sklearn
+    - datetime
+    - time
+    - argparse
