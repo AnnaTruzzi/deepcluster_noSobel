@@ -8,7 +8,7 @@
 
 
 #SBATCH --cpus-per-task=32
-#SBATCH --gpus-per-task=1
+#SBATCH --gpus-per-task=2
 #SBATCH -J train_dc_noSobel
 #SBATCH --output=/dc_noSobel/logs/slurm-%j.out
 #SBATCH --error=/dc_noSobel/logs/slurm-%j.err
@@ -20,12 +20,12 @@ LR=0.05
 WD=-5
 K=10000
 K=10
-WORKERS=4
+WORKERS=2
 EXP="/home/CUSACKLAB/annatruzzi/deepcluster_noSobel/checkpoints"
 #PYTHON="/home/CUSACKLAB/annatruzzi/anaconda3/envs/pytorch_p27/bin/python"
 PYTHON = "pyhton"
 
 mkdir -p ${EXP}
 
-CUDA_VISIBLE_DEVICES=0 ${PYTHON} main.py ${DIR} --exp ${EXP} --arch ${ARCH} \
+CUDA_VISIBLE_DEVICES=2 ${PYTHON} main.py ${DIR} --exp ${EXP} --arch ${ARCH} \
   --lr ${LR} --wd ${WD} --k ${K} --sobel --verbose --workers ${WORKERS}
