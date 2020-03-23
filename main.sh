@@ -27,5 +27,7 @@ PYTHON = "pyhton"
 
 mkdir -p ${EXP}
 
+source /home/annatruzzi/conda_env_config/create_pytorch_p27.sh
+
 CUDA_VISIBLE_DEVICES=2 ${PYTHON} main.py ${DIR} --exp ${EXP} --arch ${ARCH} \
   --lr ${LR} --wd ${WD} --k ${K} --sobel --verbose --workers ${WORKERS}
