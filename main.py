@@ -21,6 +21,7 @@ import torch.utils.data
 import torchvision.transforms as transforms
 import torchvision.datasets as datasets
 import datetime
+import glob
 
 import clustering
 import models
@@ -117,10 +118,10 @@ def main():
         else:
             print("=> no checkpoint found at '{}'".format(args.resume))
 
-    # creating checkpoint repo
+    '''# creating checkpoint repo
     exp_check = os.path.join(args.exp, 'deepcluster_checkpoints')
     if not os.path.isdir(exp_check):
-        os.makedirs(exp_check)
+        os.makedirs(exp_check)'''
 
     # creating cluster assignments log
     cluster_log = Logger(os.path.join(args.exp, 'clusters'))
@@ -158,8 +159,8 @@ def main():
         model.classifier = nn.Sequential(*list(model.classifier.children())[:-1])
 
         # get the features for the whole dataset
-#        features = compute_features(dataloader, model, 1024) # RC 2019-07-22 Just a few images for testing
-        features = compute_features(dataloader, model, len(dataset))
+        features = compute_features(dataloader, model, 1024) # RC 2019-07-22 Just a few images for testing
+#        features = compute_features(dataloader, model, len(dataset))
 
         # cluster the features
         clustering_loss = deepcluster.cluster(features, verbose=args.verbose)
@@ -255,7 +256,6 @@ def train(loader, model, crit, opt, epoch):
         if n % args.checkpoints == 0:
             path = os.path.join(
                 args.exp,
-                'checkpoints',
                 'checkpoint_dc_' + str(epoch + 1) + '.pth.tar',
             )
             if args.verbose:
