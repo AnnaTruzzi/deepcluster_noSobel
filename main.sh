@@ -20,7 +20,7 @@ WD=-5
 K=10000
 K=10
 WORKERS=2
-EXP="/home/annatruzzi/checkpoints/"
+EXP="/home/annatruzzi/checkpoints/deepcluster_checkpoints"
 PYTHON="/opt/anaconda3/envs/dc_p27/bin/python"
 
 
