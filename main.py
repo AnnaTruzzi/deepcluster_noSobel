@@ -98,6 +98,12 @@ def main():
     if args.resume:
         if os.path.isfile(args.resume):
             print("=> loading checkpoint '{}'".format(args.resume))
+            check_list = []
+            for name in glob.glob(args.resume):
+                n = (re.findall(r'\d+', name))
+                check_list.append(int(n))
+            most_recent = np.amax(np.array(check_list))
+            check_name = 'checkpoint_dc_'+ str(most_recent) + '.pth.tar'
             checkpoint = torch.load(args.resume)
             args.start_epoch = checkpoint['epoch']
             # remove top_layer parameters from checkpoint
@@ -112,7 +118,7 @@ def main():
             print("=> no checkpoint found at '{}'".format(args.resume))
 
     # creating checkpoint repo
-    exp_check = os.path.join(args.exp, 'checkpoints')
+    exp_check = os.path.join(args.exp, 'deepcluster_checkpoints')
     if not os.path.isdir(exp_check):
         os.makedirs(exp_check)
 
@@ -208,7 +214,7 @@ def main():
                     'arch': args.arch,
                     'state_dict': model.state_dict(),
                     'optimizer' : optimizer.state_dict()},
-                   os.path.join(args.exp, 'checkpoint.pth.tar'))
+                   os.path.join(args.exp, 'checkpoint_dc_'+str(epoch+1)'.pth.tar'))
 
         # save cluster assignments
         cluster_log.log(deepcluster.images_lists)
@@ -250,7 +256,7 @@ def train(loader, model, crit, opt, epoch):
             path = os.path.join(
                 args.exp,
                 'checkpoints',
-                'checkpoint_' + str(n / args.checkpoints) + '.pth.tar',
+                'checkpoint_dc_' + str(epoch + 1) + '.pth.tar',
             )
             if args.verbose:
                 print('Save checkpoint at: {0}'.format(path))
