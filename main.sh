@@ -20,10 +20,9 @@ WD=-5
 K=10000
 K=10
 WORKERS=2
-EXP="/home/CUSACKLAB/annatruzzi/deepcluster_noSobel/checkpoints"
+EXP="/home/annatruzzi/checkpoints/deepcluster_checkpoints"
 PYTHON="/opt/anaconda3/envs/dc_p27/bin/python"
 
-mkdir -p ${EXP}
 
 CUDA_VISIBLE_DEVICES=2 ${PYTHON} main.py ${DIR} --exp ${EXP} --arch ${ARCH} \
   --lr ${LR} --wd ${WD} --k ${K} --sobel --verbose --workers ${WORKERS}
