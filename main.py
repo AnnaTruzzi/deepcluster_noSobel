@@ -159,8 +159,8 @@ def main():
         model.classifier = nn.Sequential(*list(model.classifier.children())[:-1])
 
         # get the features for the whole dataset
-        features = compute_features(dataloader, model, 1024) # RC 2019-07-22 Just a few images for testing
-#        features = compute_features(dataloader, model, len(dataset))
+#        features = compute_features(dataloader, model, 1024) # RC 2019-07-22 Just a few images for testing
+        features = compute_features(dataloader, model, len(dataset))
 
         # cluster the features
         clustering_loss = deepcluster.cluster(features, verbose=args.verbose)
