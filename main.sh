@@ -22,7 +22,9 @@ K=10
 WORKERS=2
 EXP="/home/annatruzzi/checkpoints/deepcluster_checkpoints/"
 PYTHON="/opt/anaconda3/envs/dc_p27/bin/python"
+CHECKPOINTS=5005
 
 
 CUDA_VISIBLE_DEVICES=2,3 ${PYTHON} main.py ${DIR} --exp ${EXP} --arch ${ARCH} \
-  --lr ${LR} --wd ${WD} --k ${K} --sobel --verbose --workers ${WORKERS}
+  --lr ${LR} --wd ${WD} --k ${K} --sobel --verbose --workers ${WORKERS} \
+  --checkpoints ${CHECKPOINTS}

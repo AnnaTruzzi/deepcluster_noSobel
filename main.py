@@ -159,8 +159,8 @@ def main():
         model.classifier = nn.Sequential(*list(model.classifier.children())[:-1])
 
         # get the features for the whole dataset
-        features = compute_features(dataloader, model, 1024) # RC 2019-07-22 Just a few images for testing
-#        features = compute_features(dataloader, model, len(dataset))
+#        features = compute_features(dataloader, model, 1024) # RC 2019-07-22 Just a few images for testing
+        features = compute_features(dataloader, model, len(dataset))
 
         # cluster the features
         clustering_loss = deepcluster.cluster(features, verbose=args.verbose)
@@ -215,7 +215,7 @@ def main():
                     'arch': args.arch,
                     'state_dict': model.state_dict(),
                     'optimizer' : optimizer.state_dict()},
-                   os.path.join(args.exp, 'checkpoint_dc_'+str(epoch+1)+'.pth.tar'))
+                   os.path.join(args.exp, 'checkpoint_dc_'+str(epoch)+'.pth.tar'))
 
         # save cluster assignments
         cluster_log.log(deepcluster.images_lists)
@@ -256,7 +256,7 @@ def train(loader, model, crit, opt, epoch):
         if n % args.checkpoints == 0:
             path = os.path.join(
                 args.exp,
-                'checkpoint_dc_' + str(epoch + 1) + '.pth.tar',
+                'checkpoint_dc_' + str(epoch) + '.pth.tar',
             )
             if args.verbose:
                 print('Save checkpoint at: {0}'.format(path))
