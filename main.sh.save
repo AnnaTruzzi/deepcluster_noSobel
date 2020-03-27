@@ -1,9 +1,10 @@
 #!/bin/bash
 #
-#SBATCH --gres=gpu:2
+#SBATCH --gpus-per-task=2
+/home/annatruzzi/deepcluster_noSobel
 #SBATCH -J train_dc_noSobel
-#SBATCH --output=/home/annatruzzi/deepcluster_noSobel/logs/slurm-%j.out
-#SBATCH --error=/home/annatruzzi/deepcluster_noSobel/logs/slurm-%j.err
+#SBATCH --output=/dc_noSobel/logs/slurm-%j.out
+#SBATCH --error=/dc_noSobel/logs/slurm-%j.err
 
 
 DIR="/data/ILSVRC2012/train"
@@ -18,6 +19,6 @@ PYTHON="/opt/anaconda3/envs/dc_p27/bin/python"
 CHECKPOINTS=5005
 
 
-${PYTHON} main.py ${DIR} --exp ${EXP} --arch ${ARCH} \
+CUDA_VISIBLE_DEVICES=2,3 ${PYTHON} main.py ${DIR} --exp ${EXP} --arch ${ARCH} \
   --lr ${LR} --wd ${WD} --k ${K} --sobel --verbose --workers ${WORKERS} \
   --checkpoints ${CHECKPOINTS}
