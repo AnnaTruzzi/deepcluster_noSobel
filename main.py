@@ -251,12 +251,13 @@ def train(loader, model, crit, opt, epoch):
     for i, (input_tensor, target) in enumerate(loader):
         data_time.update(time.time() - end)
 
+        '''
         # save checkpoint
         n = len(loader) * epoch + i
         if n % args.checkpoints == 0:
             path = os.path.join(
                 args.exp,
-                'checkpoint_dc_' + str(epoch) + '.pth.tar',
+                'checkpoint_dc_0.pth.tar',
             )
             if args.verbose:
                 print('Save checkpoint at: {0}'.format(path))
@@ -265,7 +266,7 @@ def train(loader, model, crit, opt, epoch):
                 'arch': args.arch,
                 'state_dict': model.state_dict(),
                 'optimizer' : opt.state_dict()
-            }, path)
+            }, path)'''
 
         target = target.cuda(async=True)
         input_var = torch.autograd.Variable(input_tensor.cuda())
