@@ -1,6 +1,7 @@
 #!/bin/bash
 #
 #SBATCH --gres=gpu:2
+#SBATCH --cpus-per-task=12
 #SBATCH -J train_dc_noSobel
 #SBATCH --output=/home/annatruzzi/deepcluster_noSobel/logs/slurm-%j.out
 #SBATCH --error=/home/annatruzzi/deepcluster_noSobel/logs/slurm-%j.err
@@ -20,4 +21,4 @@ CHECKPOINTS=5005
 
 ${PYTHON} main.py ${DIR} --exp ${EXP} --arch ${ARCH} \
   --lr ${LR} --wd ${WD} --k ${K} --sobel --verbose --workers ${WORKERS} \
-  --checkpoints ${CHECKPOINTS}
+  --checkpoints ${CHECKPOINTS} --resume ${EXP}
