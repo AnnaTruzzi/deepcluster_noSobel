@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 #SBATCH --gres=gpu:2
-#SBATCH --cpus-per-task=6
+#SBATCH --cpus-per-task=12
 #SBATCH -J train_dc_noSobel
 #SBATCH --output=/home/annatruzzi/deepcluster_noSobel/logs/slurm-%j.out
 #SBATCH --error=/home/annatruzzi/deepcluster_noSobel/logs/slurm-%j.err
