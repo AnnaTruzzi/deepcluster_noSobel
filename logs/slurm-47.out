@@ -1,0 +1,4 @@
+Architecture: alexnet
+=> no checkpoint found at '/home/annatruzzi/checkpoints/deepcluster_checkpoints/'
+Load dataset: 10.66 s
+Compute features
