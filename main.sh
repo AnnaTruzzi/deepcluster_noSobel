@@ -17,7 +17,7 @@ WORKERS=12
 EXP="/home/annatruzzi/checkpoints/deepcluster_checkpoints/"
 PYTHON="/opt/anaconda3/envs/dc_p27/bin/python"
 CHECKPOINTS=5005
-RESUME="/home/annatruzzi/checkpoints/deepcluster_checkpoints/checkpoint_dc_83.pth.tar"
+RESUME="/home/annatruzzi/checkpoints/deepcluster_checkpoints/checkpoint_dc_98.pth.tar"
 
 ${PYTHON} main.py ${DIR} --exp ${EXP} --arch ${ARCH} \
   --lr ${LR} --wd ${WD} --k ${K} --sobel --verbose --workers ${WORKERS} \

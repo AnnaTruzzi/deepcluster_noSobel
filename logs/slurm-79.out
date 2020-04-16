@@ -1,0 +1,5 @@
+Architecture: alexnet
+=> loading checkpoint '/home/annatruzzi/checkpoints/deepcluster_checkpoints/checkpoint_dc_83.pth.tar'
+=> loaded checkpoint '/home/annatruzzi/checkpoints/deepcluster_checkpoints/checkpoint_dc_83.pth.tar' (epoch 84)
+Load dataset: 11.23 s
+Compute features
